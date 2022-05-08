@@ -8,35 +8,35 @@ import BudgetSummary from './components/BudgetSummary';
 import ExpenseList from './components/ExpenseList';
 import IncomeList from './components/IncomeList';
 import Header from './components/Header';
+import BudgetPeriod from './components/BudgetPeriod';
+import BudgetPeriodForm from './components/BudgetPeriodForm';
 
 function App() {
   return (
-    <div className="App">
-
       <Container>
         <Row>
           <Col>
             <Header />
           </Col>
+          <Col>
+            <BudgetPeriod />
+            <BudgetPeriodForm/>
+          </Col>
         </Row>
         <Row>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <IncomeForm />
             <IncomeList/>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <ExpenseForm/>
             <ExpenseList/>
           </Col>
-          <Col xs={6} md={4}>
+          <Col xs={12} md={4}>
             <BudgetSummary/>
           </Col>
         </Row>
       </Container>
-
-
-
-    </div>
   );
 }
 
