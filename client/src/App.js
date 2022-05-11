@@ -13,30 +13,25 @@ import BudgetPeriodForm from './components/BudgetPeriodForm';
 
 function App() {
   return (
-      <Container>
-        <Row>
-          <Col>
-            <Header />
-          </Col>
-          <Col>
-            <BudgetPeriod />
-            <BudgetPeriodForm/>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} md={4}>
-            <IncomeForm />
-            <IncomeList/>
-          </Col>
-          <Col xs={12} md={4}>
-            <ExpenseForm/>
-            <ExpenseList/>
-          </Col>
-          <Col xs={12} md={4}>
-            <BudgetSummary/>
-          </Col>
-        </Row>
-      </Container>
+    <Container>
+     
+      <Row>
+        <Col xs={12} md={3}>
+          <BudgetPeriodForm />
+        </Col>
+        <Col xs={12} md={3}>
+          <IncomeForm />
+          <IncomeList />
+        </Col>
+        <Col xs={12} md={3}>
+          <ExpenseForm />
+          <ExpenseList />
+        </Col>
+        <Col xs={12} md={3}>
+          <BudgetSummary />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
