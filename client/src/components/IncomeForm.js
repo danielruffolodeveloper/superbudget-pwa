@@ -8,7 +8,7 @@ const IncomeForm = () => {
             <Form.Group className="mb-3" controlId="formIncomeName">
                 <Form.Control type="text" placeholder="Enter Income Name" />
                 <Form.Text className="text-muted">
-                    Enter the name of Income, e.g. Salary, Bonus, etc.
+                    Enter Income, e.g. Salary, Bonus, etc.
                 </Form.Text>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formIncomeAmount">
