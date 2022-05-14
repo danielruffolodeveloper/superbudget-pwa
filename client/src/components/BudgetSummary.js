@@ -1,26 +1,25 @@
-import React, { Component } from 'react';
-import Chart from 'react-apexcharts'
+import React from "react";
+import Chart from "react-apexcharts";
 
-class BudgetSummary extends Component {
+const BudgetSummary = ({expenseLabels, expenseAmounts}) => {
 
-  constructor(props) {
-    super(props);
+  const options = { 
+    labels: [...expenseLabels]
+  };
 
-    this.state = {
-      options: {},
-      series: [44, 55, 41, 17, 15],
-      labels: ['A', 'B', 'C', 'D', 'E']
-    }
-  }
-
-  render() {
-
-    return (
-      <div className="donut">
-        <Chart options={this.state.options} series={this.state.series} type="donut" width="380" />
+  return (
+    <div className="app">
+      <div className="row">
+        <div className="mixed-chart">
+          <Chart
+            options={options}
+            series={[...expenseAmounts]}
+            type="donut"  
+          />
+        </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default BudgetSummary;

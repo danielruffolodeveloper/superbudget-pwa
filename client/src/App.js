@@ -21,6 +21,25 @@ function App() {
   const [expenses, setBudgetExpenses] = useState([]);
   const [incomes, setBudgetIncomes] = useState([]);
 
+  // transformations
+  const expenseLabels = expenses.map(expense => expense.expenseType);
+  const expenseAmounts = expenses.map(expense => parseInt(expense.amount));
+  const incomeLabels = incomes.map(income => income.incomeType);
+  const incomeAmounts = incomes.map(income => income.amount);
+
+  // calculations
+  // total expenses
+  const totalExpenses = expenses.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  // total incomes
+  const totalIncomes = incomes.reduce((acc, curr) => {
+    return acc + curr.amount;
+  }, 0);
+
+  
+
   return (
     <Container>
       <Row className="mt-5">
@@ -36,7 +55,7 @@ function App() {
           <ExpenseList budgetExpenses={expenses} />
         </Col>
         <Col xs={12} md={3}>
-          <BudgetSummary />
+          <BudgetSummary expenseLabels={expenseLabels} expenseAmounts={expenseAmounts} ttlIncome={totalIncomes} />
         </Col>
       </Row>
     </Container>
