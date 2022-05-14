@@ -20,22 +20,7 @@ function App() {
   const [expenses, setBudgetExpenses] = useState([]);
   const [incomes, setBudgetIncomes] = useState([]);
 
-  // transformations
-  const expenseLabels = expenses.map(expense => expense.expenseType);
-  const expenseAmounts = expenses.map(expense => parseInt(expense.amount));
-  const incomeLabels = incomes.map(income => income.incomeType);
-  const incomeAmounts = incomes.map(income => income.amount);
 
-  // calculations
-  // total expenses
-  const totalExpenses = expenses.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
-
-  // total incomes
-  const totalIncomes = incomes.reduce((acc, curr) => {
-    return acc + curr.amount;
-  }, 0);
 
   // function to return array of month names
   const getMonthNames = () => {
@@ -43,6 +28,33 @@ function App() {
       "July", "August", "September", "October", "November", "December"
     ];
     return monthNames;
+  }
+
+
+  
+  // calculate total income
+  const calculateTotalIncome = () => {
+    let totalIncome = 0;
+    console.log(incomes);
+    incomes.forEach(income => {
+      totalIncome += parseInt(income.amount);
+    });
+    return totalIncome;
+  }
+
+  // calculate total expenses
+  const calculateTotalExpenses = () => {
+    let totalExpenses = 0;
+    expenses.forEach(expense => {
+      totalExpenses += parseInt(expense.amount);
+    });
+    return totalExpenses;
+  }
+
+  // calculate total saved
+  const calculateTotalSaved = () => {
+    let totalSaved = calculateTotalIncome() - calculateTotalExpenses();
+    return totalSaved;
   }
 
   return (
@@ -68,7 +80,7 @@ function App() {
                   <ExpenseList budgetExpenses={expenses} />
                 </Col>
                 <Col xs={12} md={4}>
-                  <BudgetSummary expenseLabels={expenseLabels} expenseAmounts={expenseAmounts} ttlIncome={totalIncomes} />
+                  <BudgetSummary totalIncome={calculateTotalIncome()} totalExpesnes={calculateTotalExpenses()} totalSaved={calculateTotalSaved()} />
                 </Col>
               </Row>
 

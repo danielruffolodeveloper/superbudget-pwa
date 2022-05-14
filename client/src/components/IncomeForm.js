@@ -6,7 +6,7 @@ const IncomeForm = ({setBudgetIncomes,budgetIncomes}) => {
     const [income, setIncome] = useState({
         id: Math.floor(Math.random() * 100),
         incomeType: '',
-        amount: ''
+        amount: 0
     })
 
     const handleSubmit = (e) => {
