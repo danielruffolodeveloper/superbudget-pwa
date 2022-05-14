@@ -2,6 +2,12 @@ import React from 'react'
 import { ListGroup, Badge } from 'react-bootstrap';
 
 const ExpenseList = ({ budgetExpenses }) => {
+
+    // format currency to 2 decimal places Australian
+    const formatCurrency = (amount) => {
+        return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+    }
+
     return (
         <ListGroup className="mt-4">
             {budgetExpenses.map(expense => (
@@ -14,7 +20,7 @@ const ExpenseList = ({ budgetExpenses }) => {
                         {expense.expenseType}
                     </div>
                     <Badge bg="primary" pill>
-                        {expense.amount}
+                        {formatCurrency(parseInt(expense.amount))}
                     </Badge>
                 </ListGroup.Item>
             ))}

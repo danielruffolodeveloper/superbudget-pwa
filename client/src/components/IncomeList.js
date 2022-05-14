@@ -2,14 +2,14 @@ import React from 'react'
 import { ListGroup, Badge } from 'react-bootstrap';
 
 const IncomeList = ({ budgetIncomes }) => {
-    console.log(budgetIncomes)
+
+    const formatCurrency = (amount) => {
+        return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+    }
+
     return (
-
-
-
         <ListGroup className="mt-4">
             {budgetIncomes.map(income => (
-
                 <ListGroup.Item
                     key={income.id}
                     as="li"
@@ -19,18 +19,11 @@ const IncomeList = ({ budgetIncomes }) => {
                         {income.incomeType}
                     </div>
                     <Badge bg="primary" pill>
-                        {income.amount}
+                        {formatCurrency(parseInt(income.amount))}
                     </Badge>
                 </ListGroup.Item>
             ))}
-
         </ListGroup>
-
-
-
-
-
-
     )
 }
 

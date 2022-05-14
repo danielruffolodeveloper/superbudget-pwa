@@ -17,10 +17,38 @@ function App() {
 
   // set global state
   // should we lift this up to a higher level?
+
+
+  const [currentBudgetMonth, setCurrentBudgetMonth] = useState("")
+  const [budgets, setBudgets] = useState([]);
   const [expenses, setBudgetExpenses] = useState([]);
   const [incomes, setBudgetIncomes] = useState([]);
 
+ 
 
+  // function to create a new budget
+  const addBudget = () => {
+    let newBudget = {
+      id: Math.floor(Math.random() * 100),
+      month: "",
+      startDate: "",
+      endDate: "",
+      incomes: [],
+      expenses: [],
+    }
+    setBudgets([...budgets, newBudget]);
+  }
+
+   // fuction to set current budget period
+   const currentBudgetHandler = (month) => {
+    const exisingBudget = budgets.find(budget => budget.month === month);
+    if (exisingBudget) {
+      setCurrentBudgetMonth(month);
+    } else {
+      addBudget();
+      setCurrentBudgetMonth(month);
+    }
+  }
 
   // function to return array of month names
   const getMonthNames = () => {
@@ -31,7 +59,6 @@ function App() {
   }
 
 
-  
   // calculate total income
   const calculateTotalIncome = () => {
     let totalIncome = 0;
@@ -59,17 +86,6 @@ function App() {
 
   return (
     <Container>
-      <Row>
-        <Tabs defaultActiveKey="January" id="uncontrolled-tab-example" className="mb-3">
-          {getMonthNames().map(month => (
-            <Tab eventKey={month} title={month} >
-
-              <Row>
-                <Col>
-                  <h3>{month}</h3>
-                </Col>
-              </Row>
-
               <Row className="mt-2">
                 <Col xs={12} md={4}>
                   <IncomeForm setBudgetIncomes={setBudgetIncomes} budgetIncomes={incomes} />
@@ -83,11 +99,6 @@ function App() {
                   <BudgetSummary totalIncome={calculateTotalIncome()} totalExpesnes={calculateTotalExpenses()} totalSaved={calculateTotalSaved()} />
                 </Col>
               </Row>
-
-            </Tab>
-          ))}
-        </Tabs>
-      </Row>
     </Container>
   );
 }
