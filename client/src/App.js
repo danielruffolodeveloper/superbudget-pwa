@@ -18,7 +18,7 @@ function App() {
   // set state
   const [budgetPeriod, setBudgetPeriod] = useState("");
   const [expenses, setExpenses] = useState([]);
-  const [income, setIncome] = useState([]);
+  const [incomes, setBudgetIncomes] = useState([]);
 
   return (
     <Container>
@@ -27,8 +27,8 @@ function App() {
           <BudgetPeriod setPeriod={setBudgetPeriod} period={budgetPeriod}  />
         </Col>
         <Col xs={12} md={3}>
-          <IncomeForm />
-          <IncomeList />
+          <IncomeForm setBudgetIncomes={setBudgetIncomes} budgetIncomes={incomes}/>
+          <IncomeList budgetIncomes={incomes} />
         </Col>
         <Col xs={12} md={3}>
           <ExpenseForm />
@@ -38,7 +38,6 @@ function App() {
           <BudgetSummary />
         </Col>
       </Row>
-      <p>Budget Period: {budgetPeriod}</p>
     </Container>
   );
 }
