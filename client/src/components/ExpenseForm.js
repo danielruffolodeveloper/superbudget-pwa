@@ -1,18 +1,47 @@
-import React from 'react'
+import { useState } from 'react'
 import { Form, Button } from 'react-bootstrap';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ setBudgetExpenses, budgetExpenses }) => {
+
+    const [expense, setExpense] = useState({
+        id: Math.floor(Math.random() * 100),
+        expenseType: '',
+        amount: ''
+    })
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setBudgetExpenses([...budgetExpenses, expense])
+    }
+
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formExpenseName">
-                <Form.Control type="text" placeholder="Enter Expense Name" />
+        <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formExpenseType" className="mb-3">
+                <Form.Control as="select"
+                    value={expense.expenseType}
+                    onChange={(e) => setExpense({ ...expense, expenseType: e.target.value })}>
+                    <option>Select Expense Type</option>
+                    <option>Fuel</option>
+                    <option>Food</option>
+                    <option>Bills</option>
+                    <option>Rates</option>
+                    <option>Other</option>
+                </Form.Control>
                 <Form.Text className="text-muted">
-                    Enter Expense, e.g. Bills, Shopping, etc.
+                    Set Expense Type
                 </Form.Text>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formExpenseAmount">
-                <Form.Control type="number" placeholder="Amount" />
+
+            <Form.Group controlId="formExpenseAmount" className="mb-3">
+                <Form.Control
+                    type="number"
+                    placeholder="Amount"
+                    value={expense.amount}
+                    onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
+                />
+
             </Form.Group>
+
             <Button variant="primary" type="submit">
                 Add Expense
             </Button>

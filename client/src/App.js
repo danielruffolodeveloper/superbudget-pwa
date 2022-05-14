@@ -15,9 +15,10 @@ import BudgetPeriodForm from './components/BudgetPeriodForm';
 
 function App() {
 
-  // set state
+  // set global state
+  // should we lift this up to a higher level?
   const [budgetPeriod, setBudgetPeriod] = useState("");
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setBudgetExpenses] = useState([]);
   const [incomes, setBudgetIncomes] = useState([]);
 
   return (
@@ -31,8 +32,8 @@ function App() {
           <IncomeList budgetIncomes={incomes} />
         </Col>
         <Col xs={12} md={3}>
-          <ExpenseForm />
-          <ExpenseList />
+          <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} />
+          <ExpenseList budgetExpenses={expenses} />
         </Col>
         <Col xs={12} md={3}>
           <BudgetSummary />
