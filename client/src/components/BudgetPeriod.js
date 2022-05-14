@@ -1,12 +1,12 @@
 import { Form} from 'react-bootstrap';
 
-const BudgetPeriod = ({period, setPeriod}) => {
+const BudgetPeriod = ({budgetMonth, setBudgetMonth}) => {
   return (
     <Form>
             <Form.Group className="mb-3" controlId="formBudgetMonth">
                 <Form.Control as="select"
-                    value={period}
-                    onChange={(e) => setPeriod(e.target.value)}>
+                    value={budgetMonth}
+                    onChange={(e) => setBudgetMonth(e.target.value)}>
                     <option>January</option>
                     <option>February</option>
                     <option>March</option>
