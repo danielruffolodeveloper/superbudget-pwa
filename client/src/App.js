@@ -1,7 +1,7 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // bootstrap
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Tabs, Tab } from 'react-bootstrap';
 
 // components
 import ExpenseForm from './components/ExpenseForm';
@@ -17,7 +17,6 @@ function App() {
 
   // set global state
   // should we lift this up to a higher level?
-  const [budgetPeriod, setBudgetPeriod] = useState("");
   const [expenses, setBudgetExpenses] = useState([]);
   const [incomes, setBudgetIncomes] = useState([]);
 
@@ -38,25 +37,44 @@ function App() {
     return acc + curr.amount;
   }, 0);
 
-  
+  // function to return array of month names
+  const getMonthNames = () => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    return monthNames;
+  }
 
   return (
     <Container>
-      <Row className="mt-5">
-        <Col xs={12} md={3}>
-          <BudgetPeriod setPeriod={setBudgetPeriod} period={budgetPeriod}  />
-        </Col>
-        <Col xs={12} md={3}>
-          <IncomeForm setBudgetIncomes={setBudgetIncomes} budgetIncomes={incomes}/>
-          <IncomeList budgetIncomes={incomes} />
-        </Col>
-        <Col xs={12} md={3}>
-          <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} />
-          <ExpenseList budgetExpenses={expenses} />
-        </Col>
-        <Col xs={12} md={3}>
-          <BudgetSummary expenseLabels={expenseLabels} expenseAmounts={expenseAmounts} ttlIncome={totalIncomes} />
-        </Col>
+      <Row>
+        <Tabs defaultActiveKey="January" id="uncontrolled-tab-example" className="mb-3">
+          {getMonthNames().map(month => (
+            <Tab eventKey={month} title={month} >
+
+              <Row>
+                <Col>
+                  <h3>{month}</h3>
+                </Col>
+              </Row>
+
+              <Row className="mt-2">
+                <Col xs={12} md={4}>
+                  <IncomeForm setBudgetIncomes={setBudgetIncomes} budgetIncomes={incomes} />
+                  <IncomeList budgetIncomes={incomes} />
+                </Col>
+                <Col xs={12} md={4}>
+                  <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} />
+                  <ExpenseList budgetExpenses={expenses} />
+                </Col>
+                <Col xs={12} md={4}>
+                  <BudgetSummary expenseLabels={expenseLabels} expenseAmounts={expenseAmounts} ttlIncome={totalIncomes} />
+                </Col>
+              </Row>
+
+            </Tab>
+          ))}
+        </Tabs>
       </Row>
     </Container>
   );
