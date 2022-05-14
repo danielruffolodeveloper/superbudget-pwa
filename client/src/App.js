@@ -15,10 +15,9 @@ function App() {
   return (
     <Container>
 
-      <Row>
+      <Row className="mt-5">
         <Col xs={12} md={3}>
           <BudgetPeriod />
-          <BudgetPeriodForm />
         </Col>
         <Col xs={12} md={3}>
           <IncomeForm />

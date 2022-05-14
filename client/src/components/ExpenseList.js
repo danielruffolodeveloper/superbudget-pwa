@@ -4,8 +4,7 @@ import { ListGroup, Badge } from 'react-bootstrap';
 const ExpenseList = () => {
     return (
         <>
-            <p>Expenses</p>
-            <ListGroup>
+            <ListGroup className="mt-4">
                 <ListGroup.Item
                     as="li"
                     className="d-flex justify-content-between align-items-start"
