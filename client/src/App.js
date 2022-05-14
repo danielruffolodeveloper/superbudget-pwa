@@ -1,4 +1,6 @@
-import './App.css';
+import { useEffect,useState } from 'react';
+
+// bootstrap
 import { Container, Row, Col } from 'react-bootstrap';
 
 // components
@@ -12,12 +14,17 @@ import BudgetPeriod from './components/BudgetPeriod';
 import BudgetPeriodForm from './components/BudgetPeriodForm';
 
 function App() {
+
+  // set state
+  const [budgetPeriod, setBudgetPeriod] = useState("");
+  const [expenses, setExpenses] = useState([]);
+  const [income, setIncome] = useState([]);
+
   return (
     <Container>
-
       <Row className="mt-5">
         <Col xs={12} md={3}>
-          <BudgetPeriod />
+          <BudgetPeriod setPeriod={setBudgetPeriod} period={budgetPeriod}  />
         </Col>
         <Col xs={12} md={3}>
           <IncomeForm />
@@ -31,6 +38,7 @@ function App() {
           <BudgetSummary />
         </Col>
       </Row>
+      <p>Budget Period: {budgetPeriod}</p>
     </Container>
   );
 }
