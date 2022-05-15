@@ -71,11 +71,11 @@ function App() {
           <BudgetPeriod budgetMonth={currentBudgetMonth} setBudgetMonth={currentBudgetHandler} />
         </Col>
         <Col xs={12} md={3}>
-          <IncomeForm setBudgetIncomes={setBudgetIncomes} budgetIncomes={incomes} />
           <IncomeList budgetIncomes={incomes} />
+          <IncomeForm/>
         </Col>
         <Col xs={12} md={3}>
-          <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} />
+          {/* <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} /> */}
           <ExpenseList budgetExpenses={expenses} />
         </Col>
         <Col xs={12} md={3}>

@@ -23,6 +23,18 @@ export const BudgetsProvider = ({ children }) => {
         const selectedBudget = budgets.find(budget => budget.id === budgetId)
         setSelectedBudget(selectedBudget)
     }
+
+    // function to update current selected budget with new incomes
+    const handleUpdateSelectedBudgetIncomes = (newIncome) => {
+        const updatedBudget = {
+            ...selectedBudget,
+            incomes: [...selectedBudget.incomes, newIncome]
+        }
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
+
     
 
     const handleSeedBudgets = () => {
@@ -91,7 +103,8 @@ export const BudgetsProvider = ({ children }) => {
                 setSelectedBudget,
                 handleSeedBudgets,
                 handleGetBudgets,
-                handleGetSelectedBudget
+                handleGetSelectedBudget,
+                handleUpdateSelectedBudgetIncomes
             }}
         >
             {children}
