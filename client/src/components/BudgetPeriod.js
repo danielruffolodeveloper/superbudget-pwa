@@ -3,16 +3,14 @@ import { useRef } from "react"
 import { useBudgets } from "../contexts/BudgetsContext"
 
 const BudgetPeriod = () => {
-    const budgetMonthRef = useRef()
-    const { handleSeedBudgets, handleGetBudgets,handleGetSelectedBudget } = useBudgets()
+    const { handleSeedBudgets, handleGetBudgets, handleGetSelectedBudget, selectedBudget } = useBudgets()
     const budgets = handleGetBudgets()
-
     return (
         <>
-
             <ListGroup>
                 {budgets.map(budget => (
                     <ListGroup.Item key={budget.id}
+                        as="li" active={selectedBudget.id === budget.id}
                         onClick={() => {
                             handleGetSelectedBudget(budget.id)
                         }}
