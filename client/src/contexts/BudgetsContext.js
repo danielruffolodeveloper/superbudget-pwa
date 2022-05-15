@@ -13,6 +13,11 @@ export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", [])
   const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", [])
 
+  const createBudget = (budget) => {
+    setBudgets([...budgets, { ...budget}])
+    }
+
+
 
   return (
     <BudgetsContext.Provider
@@ -20,7 +25,9 @@ export const BudgetsProvider = ({ children }) => {
         budgets,
         setBudgets,
         selectedBudget,
-        setSelectedBudget
+        setSelectedBudget,
+        createBudget
+
       }}
     >
       {children}
