@@ -13,6 +13,18 @@ export const BudgetsProvider = ({ children }) => {
     const [budgets, setBudgets] = useLocalStorage("budgets", [])
     const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", [])
 
+    // function to return all budgets
+    const handleGetBudgets = () => {
+        return budgets
+    }
+
+    // function to return selected budget
+    const handleGetSelectedBudget = (budgetId) => {
+        const selectedBudget = budgets.find(budget => budget.id === budgetId)
+        setSelectedBudget(selectedBudget)
+    }
+    
+
     const handleSeedBudgets = () => {
         // delete all local storage
         localStorage.clear()
@@ -77,8 +89,9 @@ export const BudgetsProvider = ({ children }) => {
                 setBudgets,
                 selectedBudget,
                 setSelectedBudget,
-                handleSeedBudgets
-
+                handleSeedBudgets,
+                handleGetBudgets,
+                handleGetSelectedBudget
             }}
         >
             {children}

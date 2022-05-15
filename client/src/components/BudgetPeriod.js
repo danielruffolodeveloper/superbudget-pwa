@@ -1,21 +1,32 @@
-import { Form, Modal, Button } from "react-bootstrap"
-import { v4 as uuidV4 } from "uuid"
-
+import { Button, ListGroup } from "react-bootstrap"
 import { useRef } from "react"
 import { useBudgets } from "../contexts/BudgetsContext"
 
 const BudgetPeriod = () => {
-
     const budgetMonthRef = useRef()
-    const { handleSeedBudgets } = useBudgets()
-
-
+    const { handleSeedBudgets, handleGetBudgets,handleGetSelectedBudget } = useBudgets()
+    const budgets = handleGetBudgets()
 
     return (
         <>
-            <Button variant="primary" onClick={() => handleSeedBudgets()}>
-                Seed Budgets
-            </Button>
+
+            <ListGroup>
+                {budgets.map(budget => (
+                    <ListGroup.Item key={budget.id}
+                        onClick={() => {
+                            handleGetSelectedBudget(budget.id)
+                        }}
+                    >
+                        {budget.month}
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+
+            <ListGroup className="mt-3">
+                <Button variant="primary" onClick={() => handleSeedBudgets()}>
+                    Seed Budgets
+                </Button>
+            </ListGroup>
         </>
     )
 }

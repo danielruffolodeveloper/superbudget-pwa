@@ -1,7 +1,9 @@
 import React from 'react'
 import { ListGroup, Badge } from 'react-bootstrap';
+import { useBudgets } from "../contexts/BudgetsContext"
 
-const IncomeList = ({ budgetIncomes }) => {
+const IncomeList = () => {
+    const { selectedBudget } = useBudgets()
 
     const formatCurrency = (amount) => {
         return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
@@ -9,7 +11,7 @@ const IncomeList = ({ budgetIncomes }) => {
 
     return (
         <ListGroup className="mt-4">
-            {budgetIncomes.map(income => (
+            {selectedBudget.incomes.map(income => (
                 <ListGroup.Item
                     key={income.id}
                     as="li"
