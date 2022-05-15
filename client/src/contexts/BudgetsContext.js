@@ -43,14 +43,14 @@ export const BudgetsProvider = ({ children }) => {
                     incomes: [
                         {
                             id: uuidV4(),
-                            incomeType: incomeTypes[Math.floor(Math.random() * incomeTypes.length)],
+                            incomeType: incomeTypes[0],
                             amount: Math.floor(Math.random() * (5000 - 500 + 1)) + 500
                         },
                         {
                             id: uuidV4(),
-                            incomeType: incomeTypes[Math.floor(Math.random() * incomeTypes.length)],
+                            incomeType: incomeTypes[Math.floor(Math.random() * (incomeTypes.length - 1)) + 1],
                             amount: Math.floor(Math.random() * (5000 - 500 + 1)) + 500
-                        }
+                        },
                     ],
                     expenses: [
                         {
