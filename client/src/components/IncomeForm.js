@@ -36,9 +36,6 @@ const IncomeForm = () => {
 
     }, [editIncomeMode, editIncome])
 
-
-
-
     return (
         <Form onSubmit={handleSubmit}>
             <ListGroup className='mt-3'>

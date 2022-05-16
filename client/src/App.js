@@ -75,8 +75,8 @@ function App() {
           <IncomeForm/>
         </Col>
         <Col xs={12} md={3}>
-          {/* <ExpenseForm setBudgetExpenses={setBudgetExpenses} budgetExpenses={expenses} /> */}
           <ExpenseList budgetExpenses={expenses} />
+          <ExpenseForm/>
         </Col>
         <Col xs={12} md={3}>
           <BudgetSummary totalIncome={calculateTotalIncome()} totalExpesnes={calculateTotalExpenses()} totalSaved={calculateTotalSaved()} />

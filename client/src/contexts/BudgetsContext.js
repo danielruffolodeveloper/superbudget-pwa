@@ -12,8 +12,10 @@ export function useBudgets() {
 export const BudgetsProvider = ({ children }) => {
     const [budgets, setBudgets] = useLocalStorage("budgets", [])
     const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", [])
+
     const [editIncomeMode, setEditIncomeMode] = useState(false)
     const [editExpenseMode, setEditExpenseMode] = useState(false)
+
     const [editIncome, setEditIncome] = useState({})
     const [editExpense, setEditExpense] = useState({})
 
@@ -39,6 +41,17 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
+    // function to update current selected budget with new expenses
+    const handleUpdateSelectedBudgetExpenses = (newExpense) => {
+        const updatedBudget = {
+            ...selectedBudget,
+            expenses: [...selectedBudget.expenses, newExpense]
+        }
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
+
     const handleSetEditIncomeMode = (income) => {
         setEditIncomeMode(!editIncomeMode)
 
@@ -49,8 +62,15 @@ export const BudgetsProvider = ({ children }) => {
         }
     }
 
-    const handleSetEditExpenseMode = () => {
+    const handleSetEditExpenseMode = (expense) => {
         setEditExpenseMode(!editExpenseMode)
+
+        if (!editExpenseMode) {
+            setEditExpense(expense)
+        } else {
+            setEditExpense({})
+        }
+
     }
 
     // function to update the current selected budget with edited income
@@ -74,7 +94,14 @@ export const BudgetsProvider = ({ children }) => {
     }
 
     // function to update the current selected budget with edited expense
-    const handleUpdateSelectedBudgetExpense = (updatedExpense) => {
+    const handleUpdateSelectedBudgetExpense = (expense) => {
+
+        let updatedExpense = {
+            id: editExpense.id,
+            expenseType: expense.expenseType,
+            amount: expense.amount
+        }
+
         const updatedBudget = {
             ...selectedBudget,
             expenses: selectedBudget.expenses.map(expense => expense.id === updatedExpense.id ? updatedExpense : expense)
@@ -86,10 +113,20 @@ export const BudgetsProvider = ({ children }) => {
 
     // handle removing an income from the current selected budget
     const removeIncome = (incomeId) => {
-        alert('remove income-', incomeId)
         const updatedBudget = {
             ...selectedBudget,
             incomes: selectedBudget.incomes.filter(income => income.id !== incomeId)
+        }
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
+
+    // handle removing an expense from the current selected budget
+    const removeExpense = (expenseId) => {
+        const updatedBudget = {
+            ...selectedBudget,
+            expenses: selectedBudget.expenses.filter(expense => expense.id !== expenseId)
         }
         const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
         setBudgets(updatedBudgets)
@@ -165,12 +202,19 @@ export const BudgetsProvider = ({ children }) => {
                 handleGetSelectedBudget,
                 handleUpdateSelectedBudgetIncomes,
                 handleUpdateSelectedBudgetIncome,
+                handleUpdateSelectedBudgetExpenses,
+                handleUpdateSelectedBudgetExpense,
                 handleSetEditIncomeMode,
                 handleSetEditExpenseMode,
-                handleUpdateSelectedBudgetExpense,
                 editIncomeMode,
                 editIncome,
-                removeIncome
+                editExpenseMode,
+                editExpense,
+                setEditExpense,
+                setEditIncome,
+                removeIncome,
+                removeExpense,
+
 
             }}
         >

@@ -1,50 +1,84 @@
-import { useState } from 'react'
-import { Form, Button } from 'react-bootstrap';
+import { useState, useRef, useEffect } from 'react'
+import { useBudgets } from "../contexts/BudgetsContext"
+import { ListGroup, Form, Button } from 'react-bootstrap';
+import { v4 as uuidV4 } from "uuid"
 
-const ExpenseForm = ({ setBudgetExpenses, budgetExpenses }) => {
 
-    const [expense, setExpense] = useState({
-        id: Math.floor(Math.random() * 100),
-        expenseType: '',
-        amount: 0
-    })
+const ExpenseForm = () => {
+    const { handleUpdateSelectedBudgetExpenses, handleUpdateSelectedBudgetExpense, editExpenseMode, editExpense, setEditExpenseMode, removeExpense } = useBudgets()
+    const expenseTypeRef = useRef()
+    const amountRef = useRef()
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setBudgetExpenses([...budgetExpenses, expense])
+
+        const expense = {
+            id: uuidV4(),
+            expenseType: expenseTypeRef.current.value,
+            amount: amountRef.current.value,
+        }
+
+        if (editExpenseMode) {
+            handleUpdateSelectedBudgetExpense(expense)
+        } else {
+            handleUpdateSelectedBudgetExpenses(expense)
+        }
     }
+
+    useEffect(() => {
+        if (editExpenseMode) {
+            expenseTypeRef.current.value = editExpense.expenseType
+            amountRef.current.value = editExpense.amount
+        } else {
+            expenseTypeRef.current.value = ''
+            amountRef.current.value = ''
+        }
+
+    }, [editExpenseMode, editExpense])
+
+ 
 
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formExpenseType" className="mb-3">
-                <Form.Control as="select"
-                    value={expense.expenseType}
-                    onChange={(e) => setExpense({ ...expense, expenseType: e.target.value })}>
-                    <option>Select Expense Type</option>
-                    <option>Fuel</option>
-                    <option>Food</option>
-                    <option>Bills</option>
-                    <option>Rates</option>
-                    <option>Other</option>
-                </Form.Control>
-                <Form.Text className="text-muted">
-                    Set Expense Type
-                </Form.Text>
-            </Form.Group>
-
-            <Form.Group controlId="formExpenseAmount" className="mb-3">
-                <Form.Control
-                    type="number"
-                    placeholder="Amount"
-                    value={expense.amount}
-                    onChange={(e) => setExpense({ ...expense, amount: e.target.value })}
-                />
-
-            </Form.Group>
-
-            <Button variant="primary" type="submit">
-                Add Expense
-            </Button>
+            <ListGroup className='mt-3'>
+                <ListGroup.Item>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>{editExpenseMode ? 'Edit Expense' : 'Add Expense'}</Form.Label>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Select ref={expenseTypeRef}>
+                            <option>Rent</option>
+                            <option>Shopping</option>
+                            <option>Food</option>
+                            <option>Transport</option>
+                            <option>Utilities</option>
+                            <option>Insurance</option>
+                            <option>Health</option>
+                            <option>Clothing</option>
+                            <option>Entertainment</option>
+                            <option>Debt</option>
+                            <option>Other</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Control type="number" placeholder="Amount" ref={amountRef} />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Button variant="outline-primary" type="submit">
+                            {editExpenseMode ? 'Update' : 'Add'}
+                        </Button>
+                        {/* if editmode */}
+                        {editExpenseMode &&
+                        <Button variant="outline-danger"
+                            onClick={() => {
+                                removeExpense(editExpense.id)
+                            }}>
+                            Remove
+                        </Button>
+                        }
+                    </Form.Group>
+                </ListGroup.Item>
+            </ListGroup>
         </Form>
     )
 }
