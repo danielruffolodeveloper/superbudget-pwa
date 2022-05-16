@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from "uuid"
 
 
 const ExpenseForm = () => {
-    const { handleUpdateSelectedBudgetExpenses, handleUpdateSelectedBudgetExpense, editExpenseMode, editExpense, setEditExpenseMode, removeExpense } = useBudgets()
+    const { handleUpdateSelectedBudgetExpenses, handleUpdateSelectedBudgetExpense, editExpenseMode, editExpense, setEditExpenseMode, removeExpense,clearSelectedExpense } = useBudgets()
     const expenseTypeRef = useRef()
     const amountRef = useRef()
 
@@ -76,6 +76,12 @@ const ExpenseForm = () => {
                             Remove
                         </Button>
                         }
+                        <Button variant="outline-secondary"
+                            onClick={() => {
+                                clearSelectedExpense()
+                            }}>
+                            Cancel
+                        </Button>
                     </Form.Group>
                 </ListGroup.Item>
             </ListGroup>

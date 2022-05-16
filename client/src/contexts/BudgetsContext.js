@@ -189,6 +189,19 @@ export const BudgetsProvider = ({ children }) => {
         setBudgets(budgetMonths)
     }
 
+    // function to clear selected income and set edit mode to false
+    const clearSelectedIncome = () => {
+        setEditIncome({})
+        setEditIncomeMode(false)
+    }
+
+    // function to clear selected expense and set edit mode to false
+    const clearSelectedExpense = () => {
+        setEditExpense({})
+        setEditExpenseMode(false)
+    }
+
+
 
     return (
         <BudgetsContext.Provider
@@ -212,6 +225,8 @@ export const BudgetsProvider = ({ children }) => {
                 editExpense,
                 setEditExpense,
                 setEditIncome,
+                clearSelectedIncome,
+                clearSelectedExpense,
                 removeIncome,
                 removeExpense,
 

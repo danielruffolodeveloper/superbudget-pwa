@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from "uuid"
 
 
 const IncomeForm = () => {
-    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome, setEditIncomeMode, removeIncome } = useBudgets()
+    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome, setEditIncomeMode, removeIncome,clearSelectedIncome } = useBudgets()
     const incomeTypeRef = useRef()
     const amountRef = useRef()
 
@@ -67,6 +67,12 @@ const IncomeForm = () => {
                             Remove
                         </Button>
                         }
+                        <Button variant="outline-secondary"
+                            onClick={() => {
+                                clearSelectedIncome()
+                            }}>
+                            Cancel
+                        </Button>
                     </Form.Group>
                 </ListGroup.Item>
             </ListGroup>
