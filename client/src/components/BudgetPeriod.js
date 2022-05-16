@@ -12,6 +12,7 @@ const BudgetPeriod = () => {
 
     return (
         <>
+            <h6>Set budget month</h6>
             <ListGroup>
                 {budgets.map(budget => (
                     <ListGroup.Item key={budget.id}
@@ -33,13 +34,7 @@ const BudgetPeriod = () => {
                         </Badge>
                     </ListGroup.Item>
                 ))}
-            </ListGroup>
-
-            <ListGroup className="mt-3">
-                <Button variant="primary" onClick={() => handleSeedBudgets()}>
-                    Seed Budgets
-                </Button>
-            </ListGroup>
+            </ListGroup>    
         </>
     )
 }
