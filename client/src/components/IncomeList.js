@@ -10,7 +10,7 @@ const IncomeList = () => {
     }
 
     return (
-        <ListGroup className="mt-4">
+        <ListGroup>
             {selectedBudget?.incomes?.map(income => (
                 <ListGroup.Item
                     onClick={() => handleSetEditIncomeMode(income)}

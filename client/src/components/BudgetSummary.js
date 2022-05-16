@@ -1,4 +1,5 @@
 import React from 'react'
+import { ListGroup, Badge } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
 
 const BudgetSummary = () => {
@@ -22,11 +23,41 @@ const BudgetSummary = () => {
   // calculate total saved
   const totalSaved = totalIncome - totalExpenses
   return (
-    <>
-      <h5>Net Income: {formatCurrency(totalIncome)}</h5>
-      <h5>Net Expenses: {formatCurrency(totalExpenses)}</h5>
-      <h5>Total Saved: {formatCurrency(totalSaved)}</h5>
-    </>
+      <ListGroup>
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start"
+        >
+          <div className="ms-2 me-auto">
+            <div className="fw-bold">Net Income</div>
+          </div>
+          <Badge bg="primary" pill>
+            {formatCurrency(totalIncome)}
+          </Badge>
+        </ListGroup.Item>
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start"
+        >
+          <div className="ms-2 me-auto">
+            <div className="fw-bold">Net Expenses</div>
+          </div>
+          <Badge bg="primary" pill>
+            {formatCurrency(totalExpenses)}
+          </Badge>
+        </ListGroup.Item>
+        <ListGroup.Item
+          as="li"
+          className="d-flex justify-content-between align-items-start"
+        >
+          <div className="ms-2 me-auto">
+            <div className="fw-bold">Total Saved</div>
+          </div>
+          <Badge bg="primary" pill>
+            {formatCurrency(totalSaved)}
+          </Badge>
+        </ListGroup.Item>
+      </ListGroup>
   )
 }
 

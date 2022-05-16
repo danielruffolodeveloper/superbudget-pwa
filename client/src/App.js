@@ -66,7 +66,7 @@ function App() {
 
   return (
     <Container>
-      <Row className="mt-2">
+      <Row>
         <Col xs={12} md={3}>
           <BudgetPeriod budgetMonth={currentBudgetMonth} setBudgetMonth={currentBudgetHandler} />
         </Col>

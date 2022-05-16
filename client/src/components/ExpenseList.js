@@ -10,7 +10,7 @@ const ExpenseList = () => {
     }
 
     return (
-        <ListGroup className="mt-4">
+        <ListGroup>
             {selectedBudget?.expenses?.map(expense => (
                 <ListGroup.Item
                     onClick={() => handleSetEditExpenseMode(expense)}
