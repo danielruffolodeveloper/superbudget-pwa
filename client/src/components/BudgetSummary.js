@@ -23,13 +23,15 @@ const BudgetSummary = () => {
   // calculate total saved
   const totalSaved = totalIncome - totalExpenses
   return (
+    <>
+      <h6>Summary</h6>
       <ListGroup>
         <ListGroup.Item
           as="li"
           className="d-flex justify-content-between align-items-start"
         >
           <div className="ms-2 me-auto">
-            <div className="fw-bold">Net Income</div>
+            <div>Net Income</div>
           </div>
           <Badge bg="primary" pill>
             {formatCurrency(totalIncome)}
@@ -40,7 +42,7 @@ const BudgetSummary = () => {
           className="d-flex justify-content-between align-items-start"
         >
           <div className="ms-2 me-auto">
-            <div className="fw-bold">Net Expenses</div>
+            <div>Net Expenses</div>
           </div>
           <Badge bg="primary" pill>
             {formatCurrency(totalExpenses)}
@@ -51,13 +53,15 @@ const BudgetSummary = () => {
           className="d-flex justify-content-between align-items-start"
         >
           <div className="ms-2 me-auto">
-            <div className="fw-bold">Total Saved</div>
+            <div>Total Saved</div>
           </div>
           <Badge bg="primary" pill>
             {formatCurrency(totalSaved)}
           </Badge>
         </ListGroup.Item>
       </ListGroup>
+    </>
+
   )
 }
 

@@ -10,24 +10,28 @@ const ExpenseList = () => {
     }
 
     return (
-        <ListGroup>
-            {selectedBudget?.expenses?.map(expense => (
-                <ListGroup.Item
-                    onClick={() => handleSetEditExpenseMode(expense)}
-                    key={expense.id}
-                    as="li"
-                    className="d-flex justify-content-between align-items-start"
-                    active={expense.id === editExpense.id}
-                >
-                    <div className="ms-2 me-auto">
-                        {expense.expenseType}
-                    </div>
-                    <Badge bg="primary" pill>
-                        {formatCurrency(parseInt(expense.amount))}
-                    </Badge>
-                </ListGroup.Item>
-            ))}
-        </ListGroup>
+        <>            
+        <h6>Set Expenses</h6>
+            <ListGroup>
+                {selectedBudget?.expenses?.map(expense => (
+                    <ListGroup.Item
+                        onClick={() => handleSetEditExpenseMode(expense)}
+                        key={expense.id}
+                        as="li"
+                        className="d-flex justify-content-between align-items-start"
+                        active={expense.id === editExpense.id}
+                    >
+                        <div className="ms-2 me-auto">
+                            {expense.expenseType}
+                        </div>
+                        <Badge bg="primary" pill>
+                            {formatCurrency(parseInt(expense.amount))}
+                        </Badge>
+                    </ListGroup.Item>
+                ))}
+            </ListGroup>
+        </>
+
     )
 }
 
