@@ -12,6 +12,10 @@ export function useBudgets() {
 export const BudgetsProvider = ({ children }) => {
     const [budgets, setBudgets] = useLocalStorage("budgets", [])
     const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", [])
+    const [editIncomeMode, setEditIncomeMode] = useState(false)
+    const [editExpenseMode, setEditExpenseMode] = useState(false)
+    const [editIncome, setEditIncome] = useState({})
+    const [editExpense, setEditExpense] = useState({})
 
     // function to return all budgets
     const handleGetBudgets = () => {
@@ -35,7 +39,45 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
-    
+    const handleSetEditIncomeMode = (income) => {
+        setEditIncomeMode(!editIncomeMode)
+        setEditIncome(income)
+    }
+
+    const handleSetEditExpenseMode = () => {
+        setEditExpenseMode(!editExpenseMode)
+    }
+
+    // function to update the current selected budget with edited income
+    const handleUpdateSelectedBudgetIncome = (income) => {
+
+        let updatedIncome = {
+            id:editIncome.id,
+            incomeType: income.incomeType,
+            amount: income.amount
+        }
+        
+        // find and update the current selected budget income
+        const updatedBudget = {
+            ...selectedBudget,
+            incomes: selectedBudget.incomes.map(budgetIncome => budgetIncome.id === updatedIncome.id ? updatedIncome : budgetIncome)
+        }
+        // update budgets with the new budget
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
+
+    // function to update the current selected budget with edited expense
+    const handleUpdateSelectedBudgetExpense = (updatedExpense) => {
+        const updatedBudget = {
+            ...selectedBudget,
+            expenses: selectedBudget.expenses.map(expense => expense.id === updatedExpense.id ? updatedExpense : expense)
+        }
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
 
     const handleSeedBudgets = () => {
         // delete all local storage
@@ -104,7 +146,14 @@ export const BudgetsProvider = ({ children }) => {
                 handleSeedBudgets,
                 handleGetBudgets,
                 handleGetSelectedBudget,
-                handleUpdateSelectedBudgetIncomes
+                handleUpdateSelectedBudgetIncomes,
+                handleUpdateSelectedBudgetIncome,
+                handleSetEditIncomeMode,
+                handleSetEditExpenseMode,
+                handleUpdateSelectedBudgetExpense,
+                editIncomeMode,
+                editIncome,
+                
             }}
         >
             {children}

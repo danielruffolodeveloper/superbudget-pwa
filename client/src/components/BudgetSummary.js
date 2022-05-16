@@ -6,16 +6,16 @@ const BudgetSummary = () => {
 
   // format currency to 2 decimal places Australian
   const formatCurrency = (amount) => {
-    return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
+    return amount?.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
   }
 
   // calculate total expenses
-  const totalExpenses = selectedBudget.expenses.reduce((acc, curr) => {
+  const totalExpenses = selectedBudget?.expenses?.reduce((acc, curr) => {
     return acc + parseInt(curr.amount)
   }, 0)
 
   // calculate total income
-  const totalIncome = selectedBudget.incomes.reduce((acc, curr) => {
+  const totalIncome = selectedBudget?.incomes?.reduce((acc, curr) => {
     return acc + parseInt(curr.amount)
   }, 0)
 

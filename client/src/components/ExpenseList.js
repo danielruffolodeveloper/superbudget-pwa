@@ -11,7 +11,7 @@ const ExpenseList = () => {
 
     return (
         <ListGroup className="mt-4">
-            {selectedBudget.expenses.map(expense => (
+            {selectedBudget?.expenses?.map(expense => (
                 <ListGroup.Item
                     key={expense.id}
                     as="li"
