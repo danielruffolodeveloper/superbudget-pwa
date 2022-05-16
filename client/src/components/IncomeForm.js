@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from "uuid"
 
 
 const IncomeForm = () => {
-    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome, setEditIncomeMode } = useBudgets()
+    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome, setEditIncomeMode, removeIncome } = useBudgets()
     const incomeTypeRef = useRef()
     const amountRef = useRef()
 
@@ -23,8 +23,6 @@ const IncomeForm = () => {
         } else {
             handleUpdateSelectedBudgetIncomes(income)
         }
-     
-
     }
 
     useEffect(() => {
@@ -61,8 +59,17 @@ const IncomeForm = () => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Button variant="outline-primary" type="submit">
-                            Add
+                            {editIncomeMode ? 'Update' : 'Add'}
                         </Button>
+                        {/* if editmode */}
+                        {editIncomeMode &&
+                        <Button variant="outline-danger"
+                            onClick={() => {
+                                removeIncome(editIncome.id)
+                            }}>
+                            Remove
+                        </Button>
+                        }
                     </Form.Group>
                 </ListGroup.Item>
             </ListGroup>

@@ -41,7 +41,12 @@ export const BudgetsProvider = ({ children }) => {
 
     const handleSetEditIncomeMode = (income) => {
         setEditIncomeMode(!editIncomeMode)
-        setEditIncome(income)
+
+        if (!editIncomeMode) {
+            setEditIncome(income)
+        } else {
+            setEditIncome({})
+        }
     }
 
     const handleSetEditExpenseMode = () => {
@@ -52,11 +57,11 @@ export const BudgetsProvider = ({ children }) => {
     const handleUpdateSelectedBudgetIncome = (income) => {
 
         let updatedIncome = {
-            id:editIncome.id,
+            id: editIncome.id,
             incomeType: income.incomeType,
             amount: income.amount
         }
-        
+
         // find and update the current selected budget income
         const updatedBudget = {
             ...selectedBudget,
@@ -79,15 +84,27 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
+    // handle removing an income from the current selected budget
+    const removeIncome = (incomeId) => {
+        alert('remove income-', incomeId)
+        const updatedBudget = {
+            ...selectedBudget,
+            incomes: selectedBudget.incomes.filter(income => income.id !== incomeId)
+        }
+        const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
+        setBudgets(updatedBudgets)
+        setSelectedBudget(updatedBudget)
+    }
+
     const handleSeedBudgets = () => {
         // delete all local storage
         localStorage.clear()
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         const years = [2020]
-        const incomeTypes = ["Wage","Bonus","Freelancing","Other"]
-        const expenseTypes = ["Rent","Shopping","Food","Transport","Utilities","Insurance","Health","Clothing","Entertainment","Debt","Other"]
+        const incomeTypes = ["Wage", "Bonus", "Freelancing", "Other"]
+        const expenseTypes = ["Rent", "Shopping", "Food", "Transport", "Utilities", "Insurance", "Health", "Clothing", "Entertainment", "Debt", "Other"]
         const budgetMonths = []
-        
+
         years.forEach(year => {
             months.forEach(month => {
                 const budgetMonth = {
@@ -153,7 +170,8 @@ export const BudgetsProvider = ({ children }) => {
                 handleUpdateSelectedBudgetExpense,
                 editIncomeMode,
                 editIncome,
-                
+                removeIncome
+
             }}
         >
             {children}
