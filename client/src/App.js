@@ -10,26 +10,33 @@ import BudgetSummary from './components/BudgetSummary';
 import ExpenseList from './components/ExpenseList';
 import IncomeList from './components/IncomeList';
 import BudgetPeriod from './components/BudgetPeriod';
+import BudgetPeriodDropdown from './components/BudgetPeriodDropdown';
+
+// use media hook
+import useMedia from './hooks/useMedia';
+
 // navbar
 import TopBar from './components/TopBar';
 
 function App() {
+  const isDesktop = useMedia('(min-width: 960px)');
+
   return (
     <Container>
       <Row className='mb-3'>
         <TopBar />
       </Row>
       <Row>
-        <Col xs={12} md={3}>
-          <BudgetPeriod />
+        <Col xs={12} md={3}  className="mt-2">
+          {isDesktop ? <BudgetPeriod /> : <BudgetPeriodDropdown/>}
         </Col>
-        <Col xs={12} md={3}>
+        <Col xs={12} md={3} className="mt-2">
           <IncomeList />
         </Col>
-        <Col xs={12} md={3}>
+        <Col xs={12} md={3} className="mt-2">
           <ExpenseList />
         </Col>
-        <Col xs={12} md={3}>
+        <Col xs={12} md={3} className="mt-2">
           <BudgetSummary />
         </Col>
       </Row>
