@@ -1,9 +1,14 @@
-import React from 'react'
-import { ListGroup, Badge } from 'react-bootstrap';
+import { useState } from 'react'
+import { ListGroup, Badge, Button, Modal, Stack } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
+import IncomeModal from './IncomeModal';
 
 const IncomeList = () => {
     const { selectedBudget, handleSetEditIncomeMode, editIncome } = useBudgets()
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const formatCurrency = (amount) => {
         return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
@@ -11,7 +16,13 @@ const IncomeList = () => {
 
     return (
         <>
-            <h6>Set Incomes</h6>
+            <Stack direction="horizontal" gap={3}>
+                <h6>Set Incomes</h6>
+                <div className='ms-auto mb-2'>
+                <IncomeModal/>
+                </div>
+                 
+            </Stack>
             <ListGroup>
                 {selectedBudget?.incomes?.map(income => (
                     <ListGroup.Item

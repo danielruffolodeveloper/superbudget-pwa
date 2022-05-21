@@ -19,6 +19,20 @@ export const BudgetsProvider = ({ children }) => {
     const [editIncome, setEditIncome] = useState({})
     const [editExpense, setEditExpense] = useState({})
 
+    const [showIncomeModal, setShowIncomeModal] = useState(false)
+    const [showExpenseModal, setShowExpenseModal] = useState(false)
+
+
+    // show incomesModal
+    const handleShowIncomesModal = () => {
+        setShowIncomeModal(!showIncomeModal)
+    }
+
+    // show expensesModal
+    const handleShowExpensesModal = () => {
+        setShowExpenseModal(!showExpenseModal)
+    }
+
     // function to return all budgets
     const handleGetBudgets = () => {
         return budgets
@@ -229,6 +243,10 @@ export const BudgetsProvider = ({ children }) => {
                 clearSelectedExpense,
                 removeIncome,
                 removeExpense,
+                handleShowIncomesModal,
+                handleShowExpensesModal,
+                showIncomeModal,
+                showExpenseModal
 
 
             }}

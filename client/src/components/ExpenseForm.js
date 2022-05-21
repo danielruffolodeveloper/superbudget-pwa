@@ -4,7 +4,7 @@ import { ListGroup, Form, Button } from 'react-bootstrap';
 import { v4 as uuidV4 } from "uuid"
 
 
-const ExpenseForm = () => {
+const ExpenseForm = ({closeModal}) => {
     const { handleUpdateSelectedBudgetExpenses, handleUpdateSelectedBudgetExpense, editExpenseMode, editExpense, setEditExpenseMode, removeExpense, clearSelectedExpense } = useBudgets()
     const expenseTypeRef = useRef()
     const amountRef = useRef()
@@ -23,6 +23,7 @@ const ExpenseForm = () => {
         } else {
             handleUpdateSelectedBudgetExpenses(expense)
         }
+        closeModal()
     }
 
     useEffect(() => {
@@ -33,10 +34,7 @@ const ExpenseForm = () => {
             expenseTypeRef.current.value = ''
             amountRef.current.value = ''
         }
-
     }, [editExpenseMode, editExpense])
-
-
 
     return (
         <>
@@ -80,6 +78,7 @@ const ExpenseForm = () => {
                             <Button variant="outline-secondary"
                                 onClick={() => {
                                     clearSelectedExpense()
+                                    closeModal()
                                 }}>
                                 Cancel
                             </Button>

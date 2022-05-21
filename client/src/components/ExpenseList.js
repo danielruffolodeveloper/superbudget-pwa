@@ -1,6 +1,7 @@
 import React from 'react'
-import { ListGroup, Badge } from 'react-bootstrap';
+import { ListGroup, Badge,Stack,Button } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
+import ExpenseModal from './ExpenseModal';
 
 const ExpenseList = () => {
     const { selectedBudget, handleSetEditExpenseMode, editExpense } = useBudgets()
@@ -10,8 +11,13 @@ const ExpenseList = () => {
     }
 
     return (
-        <>            
-        <h6>Set Expenses</h6>
+        <>
+            <Stack direction="horizontal" gap={3}>
+                <h6>Set Expenses</h6>
+                <div className='ms-auto mb-2'>
+                  <ExpenseModal/>
+                </div>
+            </Stack>
             <ListGroup>
                 {selectedBudget?.expenses?.map(expense => (
                     <ListGroup.Item

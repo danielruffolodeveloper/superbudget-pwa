@@ -25,11 +25,9 @@ function App() {
         </Col>
         <Col xs={12} md={3}>
           <IncomeList />
-          <IncomeForm />
         </Col>
         <Col xs={12} md={3}>
           <ExpenseList />
-          <ExpenseForm />
         </Col>
         <Col xs={12} md={3}>
           <BudgetSummary />
