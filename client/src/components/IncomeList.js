@@ -4,7 +4,7 @@ import { useBudgets } from "../contexts/BudgetsContext"
 import IncomeModal from './IncomeModal';
 
 const IncomeList = () => {
-    const { selectedBudget, handleSetEditIncomeMode, editIncome } = useBudgets()
+    const { selectedBudget, handleSetEditIncomeMode, editIncome, handleShowIncomesModal } = useBudgets()
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -26,7 +26,10 @@ const IncomeList = () => {
             <ListGroup>
                 {selectedBudget?.incomes?.map(income => (
                     <ListGroup.Item
-                        onClick={() => handleSetEditIncomeMode(income)}
+                        onClick={() => {
+                            handleSetEditIncomeMode(income)
+                            handleShowIncomesModal()
+                        }}
                         key={income.id}
                         as="li"
                         className="d-flex justify-content-between align-items-start"

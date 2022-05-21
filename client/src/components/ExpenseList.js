@@ -1,10 +1,10 @@
 import React from 'react'
-import { ListGroup, Badge,Stack,Button } from 'react-bootstrap';
+import { ListGroup, Badge, Stack, Button } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
 import ExpenseModal from './ExpenseModal';
 
 const ExpenseList = () => {
-    const { selectedBudget, handleSetEditExpenseMode, editExpense } = useBudgets()
+    const { selectedBudget, handleSetEditExpenseMode, editExpense, handleShowExpensesModal } = useBudgets()
 
     const formatCurrency = (amount) => {
         return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
@@ -15,13 +15,17 @@ const ExpenseList = () => {
             <Stack direction="horizontal" gap={3}>
                 <h6>Set Expenses</h6>
                 <div className='ms-auto mb-2'>
-                  <ExpenseModal/>
+                    <ExpenseModal />
                 </div>
             </Stack>
             <ListGroup>
                 {selectedBudget?.expenses?.map(expense => (
                     <ListGroup.Item
-                        onClick={() => handleSetEditExpenseMode(expense)}
+                        onClick={() => {
+                            handleSetEditExpenseMode(expense)
+                            handleShowExpensesModal()
+                        }
+                        }
                         key={expense.id}
                         as="li"
                         className="d-flex justify-content-between align-items-start"
