@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
 
 const BudgetPeriodDropdown = () => {
-    const { handleSeedBudgets, handleGetBudgets, handleGetSelectedBudget, selectedBudget } = useBudgets()
+    const {handleGetBudgets, handleGetSelectedBudget } = useBudgets()
     const budgets = handleGetBudgets()
 
     const formatCurrency = (amount) => {

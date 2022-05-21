@@ -41,10 +41,10 @@ const ExpenseForm = ({closeModal}) => {
             <Form onSubmit={handleSubmit}>
                 <ListGroup className='mt-3'>
                     <ListGroup.Item>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3">
                             <Form.Label>{editExpenseMode ? 'Edit Expense' : 'Add Expense'}</Form.Label>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formExpense">
                             <Form.Select ref={expenseTypeRef}>
                                 <option>Rent</option>
                                 <option>Shopping</option>
@@ -59,7 +59,7 @@ const ExpenseForm = ({closeModal}) => {
                                 <option>Other</option>
                             </Form.Select>
                         </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group className="mb-3" controlId="formExpenseAmmount">
                             <Form.Control type="number" placeholder="Amount" ref={amountRef} />
                         </Form.Group>
                         <Form.Group className="mb-3">

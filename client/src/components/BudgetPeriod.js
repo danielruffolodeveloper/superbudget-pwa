@@ -1,9 +1,8 @@
 import { Button, ListGroup, Badge } from "react-bootstrap"
-import { useRef } from "react"
 import { useBudgets } from "../contexts/BudgetsContext"
 
 const BudgetPeriod = () => {
-    const { handleSeedBudgets, handleGetBudgets, handleGetSelectedBudget, selectedBudget } = useBudgets()
+    const {handleGetBudgets, handleGetSelectedBudget, selectedBudget } = useBudgets()
     const budgets = handleGetBudgets()
 
     const formatCurrency = (amount) => {

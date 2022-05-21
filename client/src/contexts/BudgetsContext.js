@@ -23,28 +23,23 @@ export const BudgetsProvider = ({ children }) => {
     const [showExpenseModal, setShowExpenseModal] = useState(false)
 
 
-    // show incomesModal
     const handleShowIncomesModal = () => {
         setShowIncomeModal(!showIncomeModal)
     }
 
-    // show expensesModal
     const handleShowExpensesModal = () => {
         setShowExpenseModal(!showExpenseModal)
     }
 
-    // function to return all budgets
     const handleGetBudgets = () => {
         return budgets
     }
 
-    // function to return selected budget
     const handleGetSelectedBudget = (budgetId) => {
         const selectedBudget = budgets.find(budget => budget.id === budgetId)
         setSelectedBudget(selectedBudget)
     }
 
-    // function to update current selected budget with new incomes
     const handleUpdateSelectedBudgetIncomes = (newIncome) => {
         const updatedBudget = {
             ...selectedBudget,
@@ -55,7 +50,6 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
-    // function to update current selected budget with new expenses
     const handleUpdateSelectedBudgetExpenses = (newExpense) => {
         const updatedBudget = {
             ...selectedBudget,
@@ -76,7 +70,6 @@ export const BudgetsProvider = ({ children }) => {
         setEditExpense(expense)
     }
 
-    // function to update the current selected budget with edited income
     const handleUpdateSelectedBudgetIncome = (income) => {
 
         let updatedIncome = {
@@ -85,18 +78,16 @@ export const BudgetsProvider = ({ children }) => {
             amount: income.amount
         }
 
-        // find and update the current selected budget income
         const updatedBudget = {
             ...selectedBudget,
             incomes: selectedBudget.incomes.map(budgetIncome => budgetIncome.id === updatedIncome.id ? updatedIncome : budgetIncome)
         }
-        // update budgets with the new budget
+
         const updatedBudgets = budgets.map(budget => budget.id === updatedBudget.id ? updatedBudget : budget)
         setBudgets(updatedBudgets)
         setSelectedBudget(updatedBudget)
     }
 
-    // function to update the current selected budget with edited expense
     const handleUpdateSelectedBudgetExpense = (expense) => {
 
         let updatedExpense = {
@@ -114,7 +105,6 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
-    // handle removing an income from the current selected budget
     const removeIncome = (incomeId) => {
         const updatedBudget = {
             ...selectedBudget,
@@ -125,7 +115,6 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
-    // handle removing an expense from the current selected budget
     const removeExpense = (expenseId) => {
         const updatedBudget = {
             ...selectedBudget,
@@ -137,7 +126,6 @@ export const BudgetsProvider = ({ children }) => {
     }
 
     const handleInitialiseBudgets = () => {
-        // delete all local storage
         localStorage.clear()
         const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         const years = [new Date().getFullYear()]
@@ -215,13 +203,11 @@ export const BudgetsProvider = ({ children }) => {
         setBudgets(budgetMonths)
     }
 
-    // function to clear selected income and set edit mode to false
     const clearSelectedIncome = () => {
         setEditIncome({})
         setEditIncomeMode(false)
     }
 
-    // function to clear selected expense and set edit mode to false
     const clearSelectedExpense = () => {
         setEditExpense({})
         setEditExpenseMode(false)

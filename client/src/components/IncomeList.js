@@ -1,14 +1,9 @@
-import { useState } from 'react'
-import { ListGroup, Badge, Button, Modal, Stack } from 'react-bootstrap';
+import { ListGroup, Badge, Stack } from 'react-bootstrap';
 import { useBudgets } from "../contexts/BudgetsContext"
 import IncomeModal from './IncomeModal';
 
 const IncomeList = () => {
     const { selectedBudget, handleSetEditIncomeMode, editIncome, handleShowIncomesModal } = useBudgets()
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     const formatCurrency = (amount) => {
         return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });

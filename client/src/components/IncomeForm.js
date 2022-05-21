@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from "uuid"
 
 
 const IncomeForm = ({closeModal}) => {
-    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome, setEditIncomeMode, removeIncome,clearSelectedIncome } = useBudgets()
+    const { handleUpdateSelectedBudgetIncomes, handleUpdateSelectedBudgetIncome, editIncomeMode, editIncome,removeIncome,clearSelectedIncome } = useBudgets()
     const incomeTypeRef = useRef()
     const amountRef = useRef()
 
@@ -41,10 +41,10 @@ const IncomeForm = ({closeModal}) => {
         <Form onSubmit={handleSubmit}>
             <ListGroup className='mt-3'>
                 <ListGroup.Item>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3">
                         <Form.Label>{editIncomeMode ? 'Edit Income' : 'Add Income'}</Form.Label>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formIncome">
                         <Form.Select ref={incomeTypeRef}>
                             <option>Wage</option>
                             <option>Bonus</option>
@@ -52,7 +52,7 @@ const IncomeForm = ({closeModal}) => {
                             <option>Other</option>
                         </Form.Select>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Group className="mb-3" controlId="formIncomeAmmoung">
                         <Form.Control type="number" placeholder="Amount" ref={amountRef} />
                     </Form.Group>
                     <Form.Group className="mb-3">
