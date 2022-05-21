@@ -68,23 +68,12 @@ export const BudgetsProvider = ({ children }) => {
 
     const handleSetEditIncomeMode = (income) => {
         setEditIncomeMode(!editIncomeMode)
-
-        if (!editIncomeMode) {
-            setEditIncome(income)
-        } else {
-            setEditIncome({})
-        }
+        setEditIncome(income)
     }
 
     const handleSetEditExpenseMode = (expense) => {
         setEditExpenseMode(!editExpenseMode)
-
-        if (!editExpenseMode) {
-            setEditExpense(expense)
-        } else {
-            setEditExpense({})
-        }
-
+        setEditExpense(expense)
     }
 
     // function to update the current selected budget with edited income
