@@ -27,16 +27,16 @@ function App() {
         <TopBar />
       </Row>
       <Row>
-        <Col xs={12} md={3}  className="mt-2">
+        <Col sm={12} md={12} lg={3} xl={3}  className="mt-2">
           {isDesktop ? <BudgetPeriod /> : <BudgetPeriodDropdown/>}
         </Col>
-        <Col xs={12} md={3} className="mt-2">
+        <Col sm={12} md={12} lg={3} xl={3}  className="mt-2">
           <IncomeList />
         </Col>
-        <Col xs={12} md={3} className="mt-2">
+        <Col sm={12} md={12} lg={3} xl={3}  className="mt-2">
           <ExpenseList />
         </Col>
-        <Col xs={12} md={3} className="mt-2">
+        <Col sm={12} md={12} lg={3} xl={3}  className="mt-2">
           <BudgetSummary />
         </Col>
       </Row>
