@@ -4,7 +4,7 @@ import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 
 
 const TopBar = () => {
-    const { handleSeedBudgets } = useBudgets()
+    const { handleSeedBudgets, handleInitialiseBudgets } = useBudgets()
     return (
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
             <Container>
@@ -15,7 +15,8 @@ const TopBar = () => {
                         {/* <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                         <NavDropdown title="Options" id="collasible-nav-dropdown">
-                            <NavDropdown.Item onClick={() => handleSeedBudgets()}>Seed</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => handleInitialiseBudgets()}>Initialise</NavDropdown.Item>
+                            <NavDropdown.Item onClick={() => handleSeedBudgets()}>Seed (Random Data)</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>

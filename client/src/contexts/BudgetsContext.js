@@ -136,6 +136,29 @@ export const BudgetsProvider = ({ children }) => {
         setSelectedBudget(updatedBudget)
     }
 
+    const handleInitialiseBudgets = () => {
+        // delete all local storage
+        localStorage.clear()
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        const years = [new Date().getFullYear()]
+        const budgetMonths = []
+
+        years.forEach(year => {
+            months.forEach(month => {
+                const budgetMonth = {
+                    id: uuidV4(),
+                    month: month,
+                    year: year,
+                    incomes: [],
+                    expenses: [],
+                }
+                budgetMonths.push(budgetMonth)
+            })
+        })
+        setBudgets(budgetMonths)
+    }
+
+
     const handleSeedBudgets = () => {
         // delete all local storage
         localStorage.clear()
@@ -214,6 +237,7 @@ export const BudgetsProvider = ({ children }) => {
                 selectedBudget,
                 setSelectedBudget,
                 handleSeedBudgets,
+                handleInitialiseBudgets,
                 handleGetBudgets,
                 handleGetSelectedBudget,
                 handleUpdateSelectedBudgetIncomes,
