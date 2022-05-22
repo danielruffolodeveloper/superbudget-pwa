@@ -71,6 +71,8 @@ const ExpenseForm = ({closeModal}) => {
                                 <Button variant="outline-danger"
                                     onClick={() => {
                                         removeExpense(editExpense.id)
+                                        closeModal()
+
                                     }}>
                                     Remove
                                 </Button>
