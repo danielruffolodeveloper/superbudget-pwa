@@ -18,6 +18,19 @@ const ExpenseList = () => {
                     <ExpenseModal />
                 </div>
             </Stack>
+
+            {/* if expenses legth < 1  */}
+            {selectedBudget.expenses.length < 1 && (
+                <ListGroup.Item
+                    as="li"
+                    className="d-flex justify-content-between align-items-start"
+                >
+                    <div className="ms-2 me-auto">
+                        <div>No expenses set</div>
+                    </div>
+                </ListGroup.Item>
+            )}
+
             <ListGroup>
                 {selectedBudget?.expenses?.map(expense => (
                     <ListGroup.Item

@@ -9,6 +9,7 @@ const IncomeList = () => {
         return amount.toLocaleString('en-AU', { style: 'currency', currency: 'AUD' });
     }
 
+
     return (
         <>
             <Stack direction="horizontal" gap={3}>
@@ -16,9 +17,19 @@ const IncomeList = () => {
                 <div className='ms-auto mb-2'>
                 <IncomeModal/>
                 </div>
-                 
             </Stack>
             <ListGroup>
+                {selectedBudget.incomes.length < 1 && (
+                    <ListGroup.Item
+                        as="li"
+                        className="d-flex justify-content-between align-items-start"
+                    >
+                        <div className="ms-2 me-auto">
+                            <div>No incomes set</div>
+                        </div>
+                    </ListGroup.Item>
+                )}
+
                 {selectedBudget?.incomes?.map(income => (
                     <ListGroup.Item
                         onClick={() => {

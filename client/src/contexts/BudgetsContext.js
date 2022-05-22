@@ -150,7 +150,7 @@ export const BudgetsProvider = ({ children }) => {
     const handleDeleteAllBudgets = () => {
         localStorage.clear()
         setBudgets([])
-        setSelectedBudget([])
+        setSelectedBudget({})
     }
 
 

@@ -21,7 +21,6 @@ const BudgetSummary = () => {
 
   return (
     <>
-      <h6>Summary</h6>
       <ListGroup>
         <ListGroup.Item
           as="li"
