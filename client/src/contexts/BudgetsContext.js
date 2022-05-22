@@ -11,7 +11,7 @@ export function useBudgets() {
 
 export const BudgetsProvider = ({ children }) => {
     const [budgets, setBudgets] = useLocalStorage("budgets", [])
-    const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", [])
+    const [selectedBudget, setSelectedBudget] = useLocalStorage("selectedBudget", {})
 
     const [editIncomeMode, setEditIncomeMode] = useState(false)
     const [editExpenseMode, setEditExpenseMode] = useState(false)
@@ -146,6 +146,14 @@ export const BudgetsProvider = ({ children }) => {
         setBudgets(budgetMonths)
     }
 
+    // handle delete budget
+    const handleDeleteAllBudgets = () => {
+        localStorage.clear()
+        setBudgets([])
+        setSelectedBudget([])
+    }
+
+
 
     const handleSeedBudgets = () => {
         // delete all local storage
@@ -245,7 +253,8 @@ export const BudgetsProvider = ({ children }) => {
                 handleShowIncomesModal,
                 handleShowExpensesModal,
                 showIncomeModal,
-                showExpenseModal
+                showExpenseModal,
+                handleDeleteAllBudgets
 
 
             }}

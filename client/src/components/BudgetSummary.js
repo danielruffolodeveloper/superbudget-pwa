@@ -18,6 +18,7 @@ const BudgetSummary = () => {
   }, 0)
 
   const totalSaved = totalIncome - totalExpenses
+
   return (
     <>
       <h6>Summary</h6>
