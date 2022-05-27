@@ -25,7 +25,7 @@ Whilst this app is by no means the 1 stop solution, My hope is that through cont
 
 
 # Deployment
- [ `https://reactsuperbudget.vercel.app/`]( https://reactsuperbudget.vercel.app/)
+ [ `https://rsb.vercel.app`]( https://rsb.vercel.app)
 
 
 
