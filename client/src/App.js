@@ -13,12 +13,6 @@ function App() {
       </Row>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        // about route
-        <Route path="/about" element={<h1>About</h1>} />
-        // login route
-        <Route path="/login" element={<h1>Login</h1>} />
-        // settings route
-        <Route path="/settings" element={<h1>Settings</h1>} />
       </Routes>
     </Container>
   );

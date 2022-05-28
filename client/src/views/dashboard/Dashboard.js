@@ -18,7 +18,7 @@ const Dashboard = () => {
     const { selectedBudget, budgets } = useBudgets()
     const isDesktop = useMedia('(min-width: 960px)');
     return (
-        <Row>
+        <>
             {budgets.length < 1 && (
                 <Row className='mt-3'>
                     <h6>Looks like you have not created a budget</h6>
@@ -52,7 +52,7 @@ const Dashboard = () => {
                 </Row>
 
             )}
-        </Row>
+        </>
     )
 }
 
