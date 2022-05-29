@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const {
-  getBudget,
+    getBudgets,
 } = require('../controllers/budgetController')
 
 const { protect } = require('../middleware/authMiddleware')
 
-router.route('/:id').get(protect, getBudget)
+router.route('/').get(protect, getBudgets)
 
 module.exports = router
