@@ -14,7 +14,43 @@ const getBudgets = asyncHandler(async (req, res) => {
   res.status(200).json(budgets)
 })
 
+// @desc    Create new budget
+// @route   POST /api/budgets
+// @access  Private
+
+const createBudget = asyncHandler(async (req, res) => {
+  const { name, description, startDate, endDate } = req.body
+
+  const budget = await Budget.create({
+    name,
+    description,
+    startDate,
+    endDate,
+    incomes: [
+      {
+        name: 'Income',
+        amount: 0,
+        date: new Date()
+      }
+    ],
+    expenses: [
+      {
+        name: 'Expense',
+        amount: 0,
+        date: new Date()
+      }
+    ],
+    user: req.user.id,
+  })
+
+  res.status(201).json(budget)
+}
+)
+
+
+
 
 module.exports = {
-  getBudgets
+  getBudgets,
+  createBudget
 }
