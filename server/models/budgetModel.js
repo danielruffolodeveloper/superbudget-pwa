@@ -11,7 +11,7 @@ const incomesSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true
+    required: false
   }
 })
 
@@ -26,7 +26,7 @@ const expensesSchema = new mongoose.Schema({
   },
   date: {
     type: Date,
-    required: true
+    required: false
   }
 })
 
@@ -47,14 +47,22 @@ const budgetSchema = mongoose.Schema(
       required: [true, 'Please add a text value'],
     },
     incomes: [incomesSchema],
+    incomesTotal: {
+      type: Number,
+      default: 0
+    },
     expenses: [expensesSchema],
+    expensesTotal: {
+      type: Number,
+      default: 0
+    },
     startDate: {
       type: Date,
-      required: [true, 'Please add a date value'],
+      required: [false, 'Please add a date value'],
     },
     endDate: {
       type: Date,
-      required: [true, 'Please add a date value'],
+      required: [false, 'Please add a date value'],
     }
   },
   {
