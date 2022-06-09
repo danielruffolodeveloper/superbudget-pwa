@@ -1,23 +1,41 @@
-const axios = require('axios');
-const baseUrl = 'localhost:5000/api/users';
+import axios from 'axios'
 
-export const registerUser = (name, email, password) => {
-    return axios.post(`${baseUrl}/register`, {
-        name,
-        email,
-        password
-    });
+const API_URL = 'http://localhost:5000/api/users/'
+
+// Register user
+const register = async (userData) => {
+  const response = await axios.post(API_URL, userData)
+
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
+  return response.data
 }
-export const loginUser = (email, password) => {
-    return axios.post(`${baseUrl}/login`, {
-        email,
-        password
-    });
+
+// Login user
+// this is gross for now, we should not store tokens in local storage!
+// later we will change this
+
+const login = async (userData) => {
+  const response = await axios.post(API_URL + 'login', userData)
+
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
+
+  return response.data
 }
-export const getUser = (token) => {
-    return axios.get(`${baseUrl}/user`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    });
+
+// Logout user
+const logout = () => {
+  localStorage.removeItem('user')
 }
+
+const userService = {
+  register,
+  logout,
+  login,
+}
+
+export default userService
