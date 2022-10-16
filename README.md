@@ -2,8 +2,7 @@
 A React PWA for managing a budget effectively 
 
 ## Summary
-Money and cost of living is all the talk post 2022 Election here in Australia. Its never been more important than ever before to get a handle on personal finances.
-Whilst this app is by no means the 1 stop solution, My hope is that through continuous development an trial of ideas, I can build a solution that makes builing personal budgets easier.
+A PWA application built using React
 
 ## Feature Objective
 ### Stage 1 
