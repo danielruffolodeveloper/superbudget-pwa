@@ -1,34 +1,34 @@
 # React Superbudget PWA
-A React PWA for managing a budget effectively 
+A Progressive Web Application (PWA) built with React for effective budget management.
 
-## Summary
-A PWA application built using React
+## Technologies Used
+- React
+- Typescript
+- Tailwind
+- Node.js
+- SQL
+- Vite
+- Docker
+- Eslint
 
-## Feature Objective
-### Stage 1 
- - Allow users create a budget spanning a period of 12 months
- - Allow users to add Incomes and Expenses to each budget and see live calculation of totals
- - Allow users to randomly seed a budget for demo purposes
- 
-## Technical Objective
-### Stage 1
- - Leverage the PWA framework/tooling to allow users to add the application to their device homescreen
- - Adopt a local storage first approach to allow users to use the application without any cloud dependencies
- - Experiment with React Hooks for local storage and context
- - Implement unit and component testing using Jest
- - Deploy to Vercel
+### Versions
+#### v.1.0.0
+- Enables users to create a budget spanning a period of 12 months
+- Allows users to add incomes and expenses to each budget and view live calculations of totals
+- Provides the option for users to randomly seed a budget for demonstration purposes
 
-#### Screens
- ![Main](/screens/main.png?raw=true "Main Application")
+#### v.2.0.0 
+- Re-designed the UI to be simple, modern, and user-friendly. Users can easily navigate through all aspects of the application from the dashboard.
+- Migrate to a React-Vite application skeleton with TypeScript and Tailwind CSS.
+Refactored the codebase to adhere to React Atomic Design principles.
+- Develop backend services for providing data persistance and tailored user account experience
 
+#### Features:
+- User Account System
+- Add/view Income for entire year and/or selected month
+- Add/view Expenses for entire year or selected month
+- Add/view balance of accounts
+- View list of recent transactions filterable by type
 
-
-# Deployment
- [ `https://rsb.vercel.app`]( https://rsb.vercel.app)
-
-
-
-
-
-
-
+### Screenshot
+![screenshot of React Superbudget PWA](./resources/v2.0-screen.png)
